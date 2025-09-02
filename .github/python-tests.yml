@@ -2,9 +2,9 @@ name: Python Unit Tests
 
 on:
   push:
-    branches: [main, feature, test]
+    branches: [main, feature/html-report]
   pull_request:
-    branches: [main, feature, test]
+    branches: [main, feature/html-report]
   workflow_dispatch:
 
 jobs:
@@ -12,8 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,8 +22,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install html-testRunner  # if you’re using it
+          pip install html-testRunner
 
-      - name: Run tests with unittest
+      - name: Run tests
         run: |
-          python -m unittest discover -s projects/bowling -p "test_*.py"
+          python -m unittest discover -s bowling -p "test_*.py" > result.html
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: unittest-report
+          path: result.html
