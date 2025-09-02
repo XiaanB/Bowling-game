@@ -26,6 +26,7 @@ jobs:
 
       - name: Run tests
         run: |
+          pip install html-testRunner
           python -m unittest discover -s bowling -p "test_*.py" > result.html
 
       - name: Upload HTML report
