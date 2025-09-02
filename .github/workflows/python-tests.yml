@@ -29,7 +29,7 @@ jobs:
           python -m unittest discover -s projects/bowling -p "test_*.py" > result.html
 
       - name: Upload HTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unittest-report
           path: result.html
