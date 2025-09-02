@@ -25,11 +25,8 @@ jobs:
           pip install html-testRunner
           python run_tests.py
 
-      - name: Debug files
-        run: ls -R # recursively list all files in the repo
-
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: unittest-report
-          path: reports/unit-test-report.html
+          path: reports/unit-test-report_*.html
