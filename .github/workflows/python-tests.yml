@@ -32,9 +32,9 @@ jobs:
           path: reports/unit-test-report_*.html
 
       - name: Generate pdoc documentation
-        working-directory: bowling-game
+        working-directory: bowling-game/bowling
         run: |
-          pdoc bowling --output-dir bowling/docs
+          PYTHONPATH=. pdoc bowling_game test_bowling_game --output-dir docs
 
       - name: Commit and push updated docs
         run: |
