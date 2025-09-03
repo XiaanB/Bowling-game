@@ -32,7 +32,7 @@ jobs:
           path: reports/unit-test-report_*.html
 
       - name: Generate pdoc documentation
-        working-directory: projects/bowling
+        working-directory: bowling-game
         run: |
           pdoc bowling_game test_bowling_game --output-dir docs
 
