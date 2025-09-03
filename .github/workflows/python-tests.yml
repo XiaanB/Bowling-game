@@ -41,6 +41,8 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add bowling/docs
-          git commit -m "📄 Auto-update docs via GitHub Actions"
-          git push
+          git commit -m "📄 Auto-update docs via GitHub Actions" || echo "No changes to commit"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/XiaanB/Bowling-game.git" HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true # Don't fail if nothing changed
